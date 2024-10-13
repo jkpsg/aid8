@@ -86,6 +86,8 @@ header p {
 .cta-button:hover {
     background-color: #005bb5;
 }
+
+/* Popup to capture name and email */
 .popup {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -141,7 +143,7 @@ header p {
 }
 .footer {
     background-color: #222;
-    color: #fff;
+    color: #ffffff8f;
     text-align: center;
     padding: 20px;
     margin-top: 30px;
