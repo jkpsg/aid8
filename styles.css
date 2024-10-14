@@ -104,6 +104,7 @@ header p {
 
 /* Popup content */
 .popup-content {
+    position: relative; /* Important: Make the content a positioned container */
     background-color: white;
     padding: 20px;
     border-radius: 10px;
@@ -151,6 +152,21 @@ header p {
 /* Button hover effect */
 .popup-content button:hover {
     background-color: #45a049; /* Lighter green on hover */
+}
+
+/* Close button styles */
+.close-button {
+    position: absolute; /* Position it absolutely relative to the popup content */
+    top: 10px; /* Space from the top */
+    right: 15px; /* Space from the right */
+    font-size: 24px; /* Larger "X" */
+    color: #333; /* Dark grey color */
+    cursor: pointer; /* Pointer cursor */
+}
+
+/* Change the color of the close button when hovered */
+.close-button:hover {
+    color: red; /* Red color on hover */
 }
 
 /* Error and thank you messages */
