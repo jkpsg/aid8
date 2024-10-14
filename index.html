@@ -6,6 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>AID8 ideation canvas</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Footer styles */
+        .footer {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 14px;
+            z-index: 10;
+            box-sizing: border-box;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -16,49 +33,35 @@
     <!-- Main Section: Hero -->
     <section class="main-section">
         <h2>Define your value proposition with AID8</h2>
-        <p>The intelligent  ideation canvas that helps launch your startup in the right direction.</p>
+        <p>The intelligent ideation canvas that helps launch your startup in the right direction.</p>
         <button class="cta-button" onclick="openPopup()">Join Waitlist</button>
     </section>
+
     <!-- Popup window for capturing name and email -->
     <div id="popupForm" class="popup">
         <div class="popup-content">
             <h2>Sign Up</h2>
-            <form id="signupForm" action="https://formspree.io/f/mldeedby" method="POST">
+            <form id="signupForm" name="popup-signup" method="POST" data-netlify="true">
                 <p>Your email will only be used to notify you when AID8 is ready for action.</p>
-                <input type="text" id="name" placeholder="Your Name">
-                <input type="email" id="email" placeholder="Your Email">
-                <button type="button" onclick="submitForm()">Submit</button>
+                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                <button type="submit">Submit</button>
             </form>
-            <div id="errorMessage" style="display: none; color: red; margin-top: 10px;">
+            <!-- <div id="errorMessage" style="display: none; color: red; margin-top: 10px;">
                 Please fill in both name and email.
-            </div>
+            </div> -->
             <div id="thankYouMessage" style="display: none; color: green; margin-top: 20px;">
                 Thank you for signing up!
             </div>
         </div>
     </div>
 
-    <!-- Solution Section -->
-    <!-- <section class="features-section">
-        <h2>Our Solution</h2>
-        <div class="feature">
-            <h3>Data-Driven Insights</h3>
-            <p>Harness the power of AI to analyze data and generate actionable insights for better decision making.</p>
-        </div>
-        <div class="feature">
-            <h3>Automation at Scale</h3>
-            <p>Automate repetitive tasks and free up resources, allowing your team to focus on innovation.</p>
-        </div>
-        <div class="feature">
-            <h3>Secure and Scalable</h3>
-            <p>Our platform is built with security and scalability in mind, ensuring your business can grow with confidence.</p>
-        </div>
-    </section> -->
-
     <!-- Footer Section -->
     <footer class="footer">
         <p>© 2024 AIONIQX. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript Code for Popup -->
     <script>
         // Function to open the popup
         function openPopup() {
@@ -70,52 +73,58 @@
             document.getElementById('popupForm').style.display = 'none';
         }
 
+        // Function to handle form submission and show thank you message
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
 
-        // Function to handle form submission
-        function submitForm() {
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const errorMessage = document.getElementById('errorMessage');
             const thankYouMessage = document.getElementById('thankYouMessage');
 
-            // Hide the error message and thank you message initially
-            errorMessage.style.display = 'none';
-            thankYouMessage.style.display = 'none';
-
             // Custom validation for name and email
             if (name === "" || email === "") {
-                // Display the custom error message if fields are missing
                 errorMessage.style.display = 'block';
             } else {
-                // Hide the error message if the form is valid
                 errorMessage.style.display = 'none';
-                
-                // Display the thank you message
-                thankYouMessage.style.display = 'block';
 
-                // Hide the message after 5 seconds, then clear form and close popup
-                setTimeout(() => {
-                    thankYouMessage.style.display = 'none'; // Hide thank you message
-                    clearForm(); // Clear the form fields
-                    closePopup(); // Close the popup after 5 seconds
-                }, 5000);
+                // Submit the form via Netlify
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(new FormData(event.target)).toString()
+                })
+                .then(() => {
+                    thankYouMessage.style.display = 'block';
+
+                    // Hide the message after 5 seconds, clear form, and close popup
+                    setTimeout(() => {
+                        thankYouMessage.style.display = 'none';
+                        clearForm();
+                        closePopup();
+                    }, 5000);
+                })
+                .catch((error) => console.error('Form submission error:', error));
             }
-        }
+        });
+
         // Function to clear the form inputs
         function clearForm() {
-            document.getElementById('signupForm').reset();  // This will reset all form fields
+            document.getElementById('signupForm').reset();
         }
+
         // Function to close popup if user clicks outside of it
         window.onclick = function(event) {
             const popup = document.getElementById('popupForm');
             if (event.target === popup) {
-                closePopup(); // Close the popup if the user clicks outside the content
+                closePopup();
             }
         }
+
         // Function to close the popup when ESC key is pressed
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape' || event.key === 'Esc') {
-                closePopup();  // Close the popup on ESC key press
+                closePopup();
             }
         });
     </script>
