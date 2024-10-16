@@ -198,6 +198,12 @@ header p {
     color: #333;
 }
 
+.features-section p {
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
 .features-container {
     display: flex;
     justify-content: center;
