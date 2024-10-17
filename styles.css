@@ -81,6 +81,7 @@ header p {
     transition: background-color 0.3s ease;
     z-index: 2; /* Ensures the button is above the overlay */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); /* Adds a shadow for the button */
+    margin-bottom: 10px;
 }
 
 .cta-button:hover {
