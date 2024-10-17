@@ -254,7 +254,7 @@ header p {
     color: white; /* White text color */
     text-align: center; /* This will center the text horizontally */
     padding: 10px 0;
-    font-size: 10px;
+    font-size: 14px;
     z-index: 10; /* Ensure the footer stays on top of other elements */
     box-sizing: border-box; /* Ensure padding doesn't affect width */
     margin: 0; /* Ensure no unwanted margins */
