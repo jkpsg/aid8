@@ -138,7 +138,7 @@ header p {
 
 /* Button styles */
 .popup-content button {
-    background-color:#A10500;/* original: #106813 */
+    background-color:#ED0800;/* original: #106813 */
     border: none;
     color: white;
     padding: 15px 25px; /* Increase padding for larger size */
@@ -151,7 +151,7 @@ header p {
 
 /* Button hover effect */
 .popup-content button:hover {
-    background-color: #ED0800; /* Original Lighter green on hover #45a049 */
+    background-color: #A10500; /* Original Lighter green on hover #45a049 */
 }
 
 /* Close button styles */
